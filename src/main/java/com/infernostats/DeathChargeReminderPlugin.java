@@ -39,6 +39,8 @@ public class DeathChargeReminderPlugin extends Plugin
 	public static final Pattern DEATH_CHARGE_ACTIVE =
 		Pattern.compile("<col=[A-Fa-f\\d]+>Upon the death of your next foe, some of your special attack energy will be restored\\.</col>");
 
+	public static final Pattern UPGRADED_DEATH_CHARGE_ACTIVE =
+		Pattern.compile("<col=[A-Fa-f\\d]+>Upon the death of your next two foes, some of your special attack energy will be restored\\.</col>");
 
 	@Override
 	protected void startUp()
@@ -65,7 +67,7 @@ public class DeathChargeReminderPlugin extends Plugin
 	{
 		final String message = event.getMessage();
 
-		if (message.matches(DEATH_CHARGE_ACTIVE.pattern()))
+		if (message.matches(DEATH_CHARGE_ACTIVE.pattern()) || message.matches(UPGRADED_DEATH_CHARGE_ACTIVE.pattern()))
 		{
 			timer.start();
 		}
